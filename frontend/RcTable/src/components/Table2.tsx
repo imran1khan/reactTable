@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil"
 import { MockData } from "../Pages/SaerchTable"
-import { SortFirstName, SortSecoundName } from "../Store/Atoms";
+import { SortEmail, SortFirstName, SortSecoundName } from "../Store/Atoms";
 
 interface prop {
   MockData: MockData
@@ -8,11 +8,15 @@ interface prop {
 function Table2({ MockData }: prop) {
   const [sortFirstName,setSortFirstName]=useRecoilState(SortFirstName);
   const [sortSecondName,setSortSecondName]=useRecoilState(SortSecoundName);
+  const [sEmail,setEmail]=useRecoilState(SortEmail);
   const OnClickFirstName=()=>{
     setSortFirstName(pre=>!pre);
   }
   const OnClickSecondName=()=>{
     setSortSecondName(pre=>!pre);
+  }
+  const OnClicksEmail=()=>{
+    setEmail(pre=>!pre);
   }
   return (
     <table className="w-full text-white">
@@ -20,7 +24,7 @@ function Table2({ MockData }: prop) {
         <tr>
           <th className="cursor-pointer" onClick={OnClickFirstName}>first name <span>{sortFirstName?'🔼':'🔽'}</span></th>
           <th className="cursor-pointer" onClick={OnClickSecondName}>last name  <span>{sortSecondName?'🔼':'🔽'}</span></th>
-          <th>email id</th>
+          <th className="cursor-pointer" onClick={OnClicksEmail}>email id  <span>{sEmail?'🔼':'🔽'}</span></th>
         </tr>
       </thead>
       <tbody>
